@@ -43,6 +43,10 @@ public class Dice {
     return dice.size();
   }
 
+  public void setRolls(int[] rolls) {
+    this.rolls = rolls;
+  }
+
   private int calculateTotal() {
     return Arrays.stream(rolls).sum();
   }
