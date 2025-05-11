@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DieTest {
+public class DieTest {
   private Die firstDie;
   private Die secondDie;
   private List<Die> dice;
