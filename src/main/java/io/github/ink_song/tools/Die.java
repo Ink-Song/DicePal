@@ -12,8 +12,8 @@ public class Die {
   }
 
   public int roll(){
-    random.setSeed(System.currentTimeMillis());
-    lastRoll = random.nextInt(sides);
+    //random.setSeed(System.currentTimeMillis());
+    lastRoll = random.nextInt(sides) + 1;
     return lastRoll;
   }
 

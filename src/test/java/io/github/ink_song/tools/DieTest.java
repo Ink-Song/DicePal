@@ -31,6 +31,7 @@ class DieTest {
       int sides = die.getSides();
       for (int i = 0; i < 1000; i++) {
         int roll = die.roll();
+        System.out.println(roll);
         assertTrue(roll <= sides);
         assertTrue(roll >= 1);
       }
