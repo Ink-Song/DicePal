@@ -24,4 +24,12 @@ public class Die {
   public int getSides(){
     return sides;
   }
+
+  public void setLastRoll(int roll){
+    this.lastRoll = roll;
+  }
+
+  public void setSides(int sides){
+    this.sides = sides;
+  }
 }
