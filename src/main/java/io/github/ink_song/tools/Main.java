@@ -4,8 +4,8 @@ import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
 
 public class Main {
-
-
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_YELLOW = "\u001B[33m";
   public static void main(String[] args) {
     Dice dice;
     dice = new Dice();
@@ -20,7 +20,11 @@ public class Main {
       System.out.println("Roll " + i + ": " + rolls[i]);
     }
     System.out.println("Total: " + dice.getTotal());
-
+    System.out.println("This"
+        + ANSI_YELLOW
+        + " text "
+        + ANSI_RESET
+        + "is yellow");
   }
 
   private void setUp(){
