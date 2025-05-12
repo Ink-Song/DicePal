@@ -14,19 +14,28 @@ public class RollParser {
   }
 
   public void parseString() {
-    Pattern pattern = Pattern.compile("(\\d+d\\d+(?:\\s*[+-]\\s*\\d+)?)");
-    Matcher matcher = pattern.matcher(rollString);
+    // Try different input examples:
+    // String input = "1d20 + 2d10 + 5";
+    // String input = "2d10 + 7 + 1d10 + 2";
+    // String input = "1d20 - 2 - 2d10";
+    String input = "1d20 + 2d10 + 5";
 
-    List<String> parsedComponents = new ArrayList<>();
+    // Regex pattern with three alternatives:
+    // 1. \d+d\d+  matches a dice roll like 1d20, 2d10, etc.
+    // 2. [+-]    matches a plus or minus operator.
+    // 3. \d+     matches a plain number.
+    Pattern tokenPattern = Pattern.compile("\\d+d\\d+|[+-]|\\d+");
+    Matcher matcher = tokenPattern.matcher(input);
 
+    List<String> tokens = new ArrayList<>();
     while (matcher.find()) {
-      parsedComponents.add(matcher.group().trim());
+      tokens.add(matcher.group());
     }
 
-    // Print results
-    System.out.println("Grouped Dice Rolls with Bonuses:");
-    for (String component : parsedComponents) {
-      System.out.println(component);
+    // Print out each token in order.
+    System.out.println("Tokens:");
+    for (String token : tokens) {
+      System.out.println(token);
     }
   }
 }
