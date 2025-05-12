@@ -2,6 +2,7 @@ package io.github.ink_song.tools;
 
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
+import io.github.ink_song.tools.util.RollParser;
 
 public class Main {
   public static final String ANSI_RESET = "\u001B[0m";
@@ -25,6 +26,9 @@ public class Main {
         + " text "
         + ANSI_RESET
         + "is yellow");
+
+    RollParser rollParser = new RollParser("1d20 + 2d10 + 10");
+    rollParser.parseString();
   }
 
   private void setUp(){
