@@ -1,5 +1,8 @@
 package io.github.ink_song.tools.util;
 
+import io.github.ink_song.tools.model.Dice;
+import io.github.ink_song.tools.model.Die;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -8,9 +11,37 @@ import java.util.regex.Pattern;
 public class RollParser {
   private String rollString;
   private String parsedRoll;
+  private List<String> parsedDiceGroups;
 
   public RollParser(String rollString) {
     this.rollString = rollString.trim();
+  }
+
+  public void evaluate(String input){
+    String[] diceGroups = this.rollString.split("\\s*,\\s");
+    List<String> evaluatedInputs = new ArrayList<>();
+    for(String diceGroup : diceGroups){
+      //We need to build from the ground up. Start by making a function that evaluates a full dice group
+    }
+  }
+
+  private String parseValue(String input){
+    List<String> parsedValues = new ArrayList<>();
+    if (input.matches("\\\\d+d\\\\d+")) {
+      return String.valueOf((parseDiceRoll(input)));
+    }
+    else return input;
+  }
+
+  private int parseDiceRoll(String input){
+    String[] parts  = input.toLowerCase().split("d");
+    int numberOfDice = Integer.parseInt(parts[0]);
+    int sides = Integer.parseInt(parts[1]);
+    Dice dice = new Dice();
+    for (int i = 0; i < numberOfDice; i++) {
+      dice.addDice(new Die(sides));
+    }
+    return dice.roll();
   }
 
   public void parseString() {

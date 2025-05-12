@@ -27,8 +27,7 @@ public class Main {
         + ANSI_RESET
         + "is yellow");
 
-    RollParser rollParser = new RollParser("1d20 + 2d10 + 10 + 5 + 1d30 ");
-    rollParser.parseString();
+    RollParser rollParser = new RollParser("1d20, 1d10 + 5, 2");
   }
 
   private void setUp(){

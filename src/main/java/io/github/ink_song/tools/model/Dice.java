@@ -13,8 +13,13 @@ public class Dice {
     dice = new ArrayList<Die>();
   }
 
-  public void roll(){
+  public void rollNoOutput(){
     rolls = dice.stream().mapToInt(Die::roll).toArray();
+  }
+
+  public int roll(){
+    rollNoOutput();
+    return getTotal();
   }
 
   public void addDice(Die d) {
