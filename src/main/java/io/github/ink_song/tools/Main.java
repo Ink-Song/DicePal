@@ -1,5 +1,8 @@
 package io.github.ink_song.tools;
 
+import io.github.ink_song.tools.model.Dice;
+import io.github.ink_song.tools.model.Die;
+
 public class Main {
 
 

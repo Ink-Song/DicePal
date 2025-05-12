@@ -1,4 +1,4 @@
-package io.github.ink_song.tools;
+package io.github.ink_song.tools.model;
 
 import java.util.Random;
 

@@ -1,6 +1,7 @@
 package io.github.ink_song.tools;
 
 
+import io.github.ink_song.tools.model.Dice;
 
 public class DiceRoller {
   private Dice dice;

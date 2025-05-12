@@ -1,9 +1,8 @@
-package io.github.ink_song.tools;
+package io.github.ink_song.tools.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Dice {
   private final List<Die> dice;

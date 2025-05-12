@@ -1,5 +1,6 @@
 package io.github.ink_song.tools;
 
+import io.github.ink_song.tools.model.Die;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
