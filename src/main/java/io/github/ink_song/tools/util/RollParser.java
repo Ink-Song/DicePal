@@ -17,24 +17,57 @@ public class RollParser {
     this.rollString = rollString.trim();
   }
 
-  public void evaluate(String input){
-    String[] diceGroups = this.rollString.split("\\s*,\\s");
+  public String evaluate(String input){
+    String[] diceGroups = input.split("\\s*,\\s");
     List<String> evaluatedInputs = new ArrayList<>();
     for(String diceGroup : diceGroups){
-      //We need to build from the ground up. Start by making a function that evaluates a full dice group
+      System.out.println("Dice Group: " + diceGroup);
+      evaluatedInputs.add(String.valueOf(parseValue(diceGroup)));
     }
+    String[] val = evaluatedInputs.toArray(new String[0]);
+    return String.join(", ", val);
   }
 
-  private String parseValue(String input){
+  private int parseValue(String input){
+    String[] parsedFromInput = input.split("\\s");
     List<String> parsedValues = new ArrayList<>();
-    if (input.matches("\\\\d+d\\\\d+")) {
-      return String.valueOf((parseDiceRoll(input)));
+    for(String parsedValue : parsedFromInput){
+      System.out.println("Paresed Value: " + parsedValue);
+      if (parsedValue.matches("\\d+d\\d+")) {
+        String convertedRoll = String.valueOf(parseDiceRoll(parsedValue));
+        System.out.println("Converted Roll " + convertedRoll);
+        parsedValues.add(convertedRoll);
+      }
+      else {
+        parsedValues.add(input);
+      }
     }
-    else return input;
+    return evaluateExpression(parsedValues);
+  }
+
+  private int evaluateExpression(List<String> input){
+    for (String value : input) {
+      System.out.println("Evaluated Value: " + value);
+    }
+    int result = Integer.parseInt(input.get(0));
+    for (int i = 1; i < input.size(); i+=2) {
+      String operator = input.get(i);
+      int nextNumber = Integer.parseInt(input.get(i+1));
+      result = switch (operator) {
+        case "+" -> result + nextNumber;
+        case "-" -> result - nextNumber;
+        default -> result;
+      };
+    }
+    return result;
   }
 
   private int parseDiceRoll(String input){
+    System.out.println("Parsing Dice Roll: " + input);
     String[] parts  = input.toLowerCase().split("d");
+    for (String string : parts) {
+      System.out.println("Parts: " + string);
+    }
     int numberOfDice = Integer.parseInt(parts[0]);
     int sides = Integer.parseInt(parts[1]);
     Dice dice = new Dice();

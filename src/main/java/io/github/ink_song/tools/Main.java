@@ -28,6 +28,7 @@ public class Main {
         + "is yellow");
 
     RollParser rollParser = new RollParser("1d20, 1d10 + 5, 2");
+    System.out.println(rollParser.evaluate("1d20 + 7, 1d20, 1d100 + 30"));
   }
 
   private void setUp(){
