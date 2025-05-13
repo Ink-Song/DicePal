@@ -44,7 +44,7 @@ public class RollParser {
     for (String value : input) {
       System.out.println("Evaluated Value: " + value);
     }
-    int result = Integer.parseInt(input.get(0));
+    int result = Integer.parseInt(input.getFirst());
     for (int i = 1; i < input.size(); i+=2) {
       String operator = input.get(i);
       int nextNumber = Integer.parseInt(input.get(i+1));
