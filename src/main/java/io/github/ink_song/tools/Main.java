@@ -27,8 +27,12 @@ public class Main {
         + ANSI_RESET
         + "is yellow");
 
-    RollParser rollParser = new RollParser("1d20, 1d10 + 5, 2");
-    System.out.println(rollParser.evaluate("1d20 + 7, 1d20, 1d100 + 30"));
+    String roll = "2d10 + 5";
+    String roll2 = "1d4 + 3";
+    System.out.println("Roll: " + roll);
+    System.out.println("Roll 1 Result: " + new RollParser().evaluate(roll));
+    System.out.println("Roll 2: " + roll2);
+    System.out.println("Roll 2 Result: " + new RollParser().evaluate(roll2));
   }
 
   private void setUp(){
