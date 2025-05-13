@@ -1,22 +1,26 @@
 package io.github.ink_song.tools.util;
 
-import io.github.ink_song.tools.model.Dice;
-import io.github.ink_song.tools.model.Die;
-
 import java.util.ArrayList;
 import java.util.List;
+import io.github.ink_song.tools.model.Dice;
+import io.github.ink_song.tools.model.Die;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class RollParser {
+  private static final Logger logger = LogManager.getLogger(RollParser.class);
+
   private String rollString;
   private String parsedRoll;
   private List<String> parsedDiceGroups;
 
   public String evaluate(String input){
+    logger.info("Evaluating input {}", input);
     rollString = input;
     String[] diceGroups = input.split("\\s*,\\s");
     List<String> evaluatedInputs = new ArrayList<>();
     for(String diceGroup : diceGroups){
-      System.out.println("Dice Group: " + diceGroup);
       evaluatedInputs.add(String.valueOf(parseValue(diceGroup)));
     }
     String[] val = evaluatedInputs.toArray(new String[0]);
@@ -24,13 +28,13 @@ public class RollParser {
   }
 
   private int parseValue(String input){
+    logger.info("Parsing value for dice group: {}", input);
     String[] parsedFromInput = input.split("\\s");
     List<String> parsedValues = new ArrayList<>();
     for(String parsedValue : parsedFromInput){
-      System.out.println("Parsed Value: " + parsedValue);
+      logger.info("Checking parsed Value: {}", parsedValue);
       if (parsedValue.matches("\\d+d\\d+")) {
         String convertedRoll = String.valueOf(parseDiceRoll(parsedValue));
-        System.out.println("Converted Roll " + convertedRoll);
         parsedValues.add(convertedRoll);
       }
       else {
@@ -41,9 +45,11 @@ public class RollParser {
   }
 
   private int evaluateExpression(List<String> input){
-    for (String value : input) {
-      System.out.println("Evaluated Value: " + value);
+    StringBuilder stringBuilder = new StringBuilder();
+    for (String string : input) {
+      stringBuilder.append(string);
     }
+    logger.info("Evaluating expression: {}", stringBuilder.toString());
     int result = Integer.parseInt(input.getFirst());
     for (int i = 1; i < input.size(); i+=2) {
       String operator = input.get(i);
@@ -59,13 +65,11 @@ public class RollParser {
   }
 
   private int parseDiceRoll(String input){
-    System.out.println("Parsing Dice Roll: " + input);
+    logger.info("Checking Dice Roll: {}", input);
     String[] parts  = input.toLowerCase().split("d");
-    for (String string : parts) {
-      System.out.println("Parts: " + string);
-    }
     int numberOfDice = Integer.parseInt(parts[0]);
     int sides = Integer.parseInt(parts[1]);
+    logger.info("Rolling [{}] dice with [{}] sides each", numberOfDice, sides);
     Dice dice = new Dice();
     for (int i = 0; i < numberOfDice; i++) {
       dice.addDice(new Die(sides));
