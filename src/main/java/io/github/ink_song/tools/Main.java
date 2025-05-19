@@ -1,10 +1,14 @@
 package io.github.ink_song.tools;
 
+import io.github.ink_song.tools.exception.InvalidCommandException;
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
+import io.github.ink_song.tools.service.InputHandler;
 import io.github.ink_song.tools.util.RollParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
 
 public class Main {
   private static final Logger logger = LogManager.getLogger(Main.class);
@@ -13,8 +17,25 @@ public class Main {
 
 
   public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    InputHandler inputHandler = new InputHandler();
+    String input;
 
+    while(true) {
+      input = scanner.nextLine();
+      if (input.equals("/quit")) {
+        System.exit(0);
+      }
+      try {
+        inputHandler.handle(input);
+      } catch (InvalidCommandException e) {
+        logger.error(e);
+        System.out.println("Invalid command: " + e.getMessage());
+      }
+    }
   }
+
+
 
   private void setUp(){
 
