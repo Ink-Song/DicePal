@@ -17,6 +17,7 @@ public class Main {
   private static final Logger logger = LogManager.getLogger(Main.class);
   private static final String ANSI_RESET = "\u001B[0m";
   private static final String ANSI_YELLOW = "\u001B[33m";
+  private static final String ANSI_BOLD = "\u001B[1m";
 
 
   public static void main(String[] args) {
@@ -29,13 +30,15 @@ public class Main {
     String input;
 
     while(true) {
+      clearScreen();
+      System.out.print("> ");
       input = scanner.nextLine();
       if (input.equals("/quit")) {
         System.exit(0);
       }
       try {
         CommandResult output = inputHandler.handle(input);
-        System.out.println(output.getMessage());
+        System.out.println(ANSI_BOLD + "Result: " + ANSI_RESET + output.getMessage());
       } catch (InvalidCommandException e) {
         System.out.println("Invalid command: " + e.getMessage());
       }
@@ -44,6 +47,11 @@ public class Main {
 
   private static void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
     commandRegistry.register("/roll", commandFactory::rollCommand);
+    commandRegistry.register("/npc", commandFactory::rollStatsCommand);
+  }
+  private static void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 
 

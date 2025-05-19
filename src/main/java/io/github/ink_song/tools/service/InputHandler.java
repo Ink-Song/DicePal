@@ -18,12 +18,17 @@ public class InputHandler {
     }
 
     String[] tokens = string.split(" ", 2);
-
+    Command command;
     try {
-      Command command = registry.getCommand(tokens[0]);
-      return command.execute(tokens);
+      command = registry.getCommand(tokens[0]);
     } catch (NullPointerException e) {
       throw new InvalidCommandException("Command '" + tokens[0] + "' not found.");
+    }
+
+    try {
+      return command.execute(tokens);
+    } catch (Exception e) {
+      throw new InvalidCommandException(e.getMessage());
     }
   }
 
