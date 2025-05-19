@@ -3,6 +3,8 @@ package io.github.ink_song.tools;
 import io.github.ink_song.tools.exception.InvalidCommandException;
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
+import io.github.ink_song.tools.service.CommandFactory;
+import io.github.ink_song.tools.service.CommandRegistry;
 import io.github.ink_song.tools.service.InputHandler;
 import io.github.ink_song.tools.util.RollParser;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +20,10 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    InputHandler inputHandler = new InputHandler();
+    CommandFactory commandFactory = new CommandFactory();
+    CommandRegistry commandRegistry = new CommandRegistry();
+
+    InputHandler inputHandler = new InputHandler(commandRegistry);
     String input;
 
     while(true) {
@@ -33,6 +38,10 @@ public class Main {
         System.out.println("Invalid command: " + e.getMessage());
       }
     }
+  }
+
+  private void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
+    commandRegistry.register("/roll", commandFactory::rollCommand);
   }
 
 

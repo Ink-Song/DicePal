@@ -2,17 +2,16 @@ package io.github.ink_song.tools.command;
 
 import io.github.ink_song.tools.util.RollParser;
 
-public class RollCommand implements Command {
-  private final RollParser parser;
-  private final String input;
+import java.security.InvalidParameterException;
 
-  public RollCommand(String input) {
-    parser = new RollParser();
-    this.input = input;
-  }
+public class RollCommand implements Command {
 
   @Override
-  public void execute(){
-    parser.evaluate(input);
+  public void execute(String[] args) {
+    RollParser parser = new RollParser();
+    if(args.length != 2){
+      throw new InvalidParameterException("Invalid number of arguments");
+    }
+    parser.evaluate(args[1]);
   }
 }

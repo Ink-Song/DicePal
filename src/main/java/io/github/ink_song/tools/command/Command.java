@@ -7,5 +7,5 @@ public interface Command {
   /**
    * Executes a given command.
    */
-  void execute();
+  void execute(String[] args);
 }
