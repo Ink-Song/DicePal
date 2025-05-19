@@ -1,6 +1,7 @@
 package io.github.ink_song.tools;
 
 import io.github.ink_song.tools.exception.InvalidCommandException;
+import io.github.ink_song.tools.model.CommandResult;
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
 import io.github.ink_song.tools.service.CommandFactory;
@@ -24,6 +25,7 @@ public class Main {
     CommandRegistry commandRegistry = new CommandRegistry();
 
     InputHandler inputHandler = new InputHandler(commandRegistry);
+    initializeCommands(commandRegistry, commandFactory);
     String input;
 
     while(true) {
@@ -32,15 +34,15 @@ public class Main {
         System.exit(0);
       }
       try {
-        inputHandler.handle(input);
+        CommandResult output = inputHandler.handle(input);
+        System.out.println(output.getMessage());
       } catch (InvalidCommandException e) {
-        logger.error(e);
         System.out.println("Invalid command: " + e.getMessage());
       }
     }
   }
 
-  private void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
+  private static void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
     commandRegistry.register("/roll", commandFactory::rollCommand);
   }
 
