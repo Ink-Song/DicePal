@@ -10,18 +10,25 @@ import org.apache.logging.log4j.Logger;
 
 public class RollParser {
   private static final Logger logger = LogManager.getLogger(RollParser.class);
+  private final StringValidator validator = new StringValidator("\\d+d\\d+|[+\\-]|\\d+/");
 
   private String rollString;
   private String parsedRoll;
   private List<String> parsedDiceGroups;
 
-  public String evaluate(String input){
+  public String evaluate(String input) throws IllegalArgumentException {
     logger.info("Evaluating input {}", input);
     rollString = input;
     String[] diceGroups = input.split("\\s*,\\s");
     List<String> evaluatedInputs = new ArrayList<>();
     for(String diceGroup : diceGroups){
-      evaluatedInputs.add(String.valueOf(parseValue(diceGroup)));
+      System.out.println(diceGroup);
+      if(validator.isValid(diceGroup)){
+        evaluatedInputs.add(String.valueOf(parseValue(diceGroup)));
+      } else {
+        throw new IllegalArgumentException("Invalid roll expression: " + diceGroup);
+      }
+
     }
     String[] val = evaluatedInputs.toArray(new String[0]);
     return String.join(", ", val);

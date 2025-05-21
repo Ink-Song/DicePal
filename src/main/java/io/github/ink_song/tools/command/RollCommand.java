@@ -13,6 +13,7 @@ public class RollCommand implements Command {
     if(args.length != 2){
       throw new InvalidParameterException("Invalid number of arguments");
     }
+    String rollData = args[1];
     String result = parser.evaluate(args[1]);
     return new CommandResult(true, result);
   }
