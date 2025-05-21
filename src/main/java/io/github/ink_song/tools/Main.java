@@ -30,7 +30,6 @@ public class Main {
     String input;
 
     while(true) {
-      clearScreen();
       System.out.print("> ");
       input = scanner.nextLine();
       if (input.equals("/quit")) {
@@ -48,10 +47,6 @@ public class Main {
   private static void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
     commandRegistry.register("/roll", commandFactory::rollCommand);
     commandRegistry.register("/npc", commandFactory::rollStatsCommand);
-  }
-  private static void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
   }
 
 
