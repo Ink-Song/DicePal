@@ -1,7 +1,11 @@
 package io.github.ink_song.tools.command;
 
+import io.github.ink_song.tools.DiceRoller;
 import io.github.ink_song.tools.model.CommandResult;
+import io.github.ink_song.tools.util.MathUtil;
 import io.github.ink_song.tools.util.RollParser;
+
+import java.util.Arrays;
 
 public class RollStatsCommand implements Command {
 
@@ -12,11 +16,20 @@ public class RollStatsCommand implements Command {
    */
   @Override
   public CommandResult execute(String[] args) {
-    RollParser parser = new RollParser();
-    if (args.length == 1) {
-      String result = parser.evaluate("3d6, 3d6, 3d6, 3d6, 3d6, 3d6");
-      return new CommandResult(true, result);
+    if (args.length > 1) {return new CommandResult(false, "");}
+
+    DiceRoller diceRoller = new DiceRoller(4, 6);
+    StringBuilder message = new StringBuilder();
+    for (int i = 0; i < 6; i++) {
+      int[] rolls = diceRoller.rollDropLowest();
+      int result = MathUtil.sum(rolls);
+      if(i < 5){
+        message.append(result).append(", ");
+      } else {
+        message.append(result);
+      }
     }
-    return new CommandResult(false, "");
+
+    return new CommandResult(true, message.toString());
   }
 }
