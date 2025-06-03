@@ -1,7 +1,7 @@
 package io.github.ink_song.tools.command;
 
 import io.github.ink_song.tools.model.CommandResult;
-import io.github.ink_song.tools.util.RollParser;
+import io.github.ink_song.tools.service.parser.RollParser;
 
 import java.security.InvalidParameterException;
 

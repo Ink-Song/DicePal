@@ -1,9 +1,10 @@
-package io.github.ink_song.tools.util;
+package io.github.ink_song.tools.service.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.model.Die;
+import io.github.ink_song.tools.util.StringValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
