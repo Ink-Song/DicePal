@@ -43,7 +43,7 @@ public class RollParser {
         parsedRoll.addItem(new ParsedItem(dice, ItemType.DICE));
         continue;
       }
-      if(parsedItem.matches("\\d+/\\d+")){
+      if(parsedItem.matches("\\d+")){
         int integer = Integer.parseInt(parsedItem);
         parsedRoll.addItem(new ParsedItem(integer, ItemType.INTEGER));
       }
@@ -122,7 +122,7 @@ public class RollParser {
     String[] parts  = input.toLowerCase().split("d");
     int numberOfDice = Integer.parseInt(parts[0]);
     int sides = Integer.parseInt(parts[1]);
-    logger.info("Rolling [{}] dice with [{}] sides each", numberOfDice, sides);
+    logger.info("Parsed [{}] dice with [{}] sides each", numberOfDice, sides);
     Dice dice = new Dice();
     for (int i = 0; i < numberOfDice; i++) {
       dice.addDice(new Die(sides));

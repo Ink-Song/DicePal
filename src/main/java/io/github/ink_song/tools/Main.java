@@ -44,5 +44,6 @@ public class Main {
   private static void initializeCommands(CommandRegistry commandRegistry, CommandFactory commandFactory) {
     commandRegistry.register("/roll", commandFactory::rollCommand);
     commandRegistry.register("/npc", commandFactory::rollStatsCommand);
+    commandRegistry.register("/adv", commandFactory::rollAdvantageCommand);
   }
 }

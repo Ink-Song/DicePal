@@ -1,39 +1,49 @@
 package io.github.ink_song.tools.service.parser;
 
-import io.github.ink_song.tools.model.Dice;
-import io.github.ink_song.tools.util.MathUtil;
-
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StandardParsedRollHandler implements ParsedRollHandler {
+  private static final Logger logger = LogManager.getLogger(StandardParsedRollHandler.class);
 
   @Override
   public String handle(ParsedRoll parsedRoll) {
+    logger.info("Handling Roll");
     List<ParsedItem> parsedItems = parsedRoll.getTokens();
     Operator operator = Operator.ADD;
-    int lastInt = 0;
+    int currentResult = 0;
     for (ParsedItem parsedItem : parsedItems) {
       ItemType type = parsedItem.type();
-      int a = 0;
+      logger.info("Parsing an item of type {}", type);
       switch (type) {
-        case DICE -> { a = parsedItem.asDice().roll();}
-        case INTEGER -> { a = parsedItem.asInt(); }
+        case DICE -> {
+          int a = parsedItem.asDice().roll();
+          currentResult = evaluate(currentResult, a, operator);
+        }
+        case INTEGER -> {
+          int a = parsedItem.asInt();
+          currentResult = evaluate(currentResult, a, operator);
+        }
         case CHARACTER -> {
           if (parsedItem.asChar() == '+'){
             operator = Operator.ADD;
           }
           else if (parsedItem.asChar() == '-'){
             operator = Operator.SUBTRACT;
-            continue;
           }
         }
       }
-      switch (operator) {
-        case ADD -> lastInt = lastInt + a;
-        case SUBTRACT -> lastInt = lastInt - a;
-      }
     }
 
-    return "" + lastInt;
+    return "" + currentResult;
+  }
+  private int evaluate(int a, int b, Operator operator) {
+    int result = 0;
+    switch (operator) {
+      case ADD ->{ result =  a + b;}
+      case SUBTRACT -> { result =  a - b; }
+    }
+    return result;
   }
 }
