@@ -1,8 +1,6 @@
 package io.github.ink_song.tools.service;
 
-import io.github.ink_song.tools.command.RollAdvantageCommand;
-import io.github.ink_song.tools.command.RollCommand;
-import io.github.ink_song.tools.command.RollStatsCommand;
+import io.github.ink_song.tools.command.*;
 
 public class CommandFactory {
 
@@ -16,5 +14,9 @@ public class CommandFactory {
 
   public RollAdvantageCommand rollAdvantageCommand(){
     return new RollAdvantageCommand();
+  }
+
+  public Command rollDisadvantageCommand() {
+    return new RollDisadvantageCommand();
   }
 }

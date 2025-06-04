@@ -5,7 +5,7 @@ import io.github.ink_song.tools.service.DiceRoller;
 
 import java.util.List;
 
-public class AdvantageParsedRollHandler implements ParsedRollHandler {
+public class DisadvantageParsedRollHandler implements ParsedRollHandler {
   @Override
   public String handle(ParsedRoll parsedRoll) {
     DiceRoller diceRoller = new DiceRoller();
@@ -16,7 +16,7 @@ public class AdvantageParsedRollHandler implements ParsedRollHandler {
       ItemType type = parsedItem.type();
       switch (type) {
         case DICE -> {
-          int a = diceRoller.rollWithAdvantage(parsedItem.asDice());
+          int a = diceRoller.rollWithDisadvantage(parsedItem.asDice());
           currentResult = evaluate(currentResult, a, operator);
         }
         case INTEGER -> {
@@ -37,10 +37,10 @@ public class AdvantageParsedRollHandler implements ParsedRollHandler {
     return "" + currentResult;
   }
 
-  private int rollWithAdvantage(Dice dice){
+  private int rollWithDisadvantage(Dice dice){
     int roll1 = dice.roll();
     int roll2 = dice.roll();
-    return Math.max(roll1, roll2);
+    return Math.min(roll1, roll2);
   }
   private int evaluate(int a, int b, Operator operator) {
     int result = 0;

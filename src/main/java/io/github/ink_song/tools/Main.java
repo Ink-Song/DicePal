@@ -45,5 +45,6 @@ public class Main {
     commandRegistry.register("/roll", commandFactory::rollCommand);
     commandRegistry.register("/npc", commandFactory::rollStatsCommand);
     commandRegistry.register("/adv", commandFactory::rollAdvantageCommand);
+    commandRegistry.register("/dis", commandFactory::rollDisadvantageCommand);
   }
 }

@@ -1,6 +1,6 @@
 package io.github.ink_song.tools.command;
 
-import io.github.ink_song.tools.DiceRoller;
+import io.github.ink_song.tools.service.DiceRoller;
 import io.github.ink_song.tools.model.CommandResult;
 import io.github.ink_song.tools.util.MathUtil;
 
