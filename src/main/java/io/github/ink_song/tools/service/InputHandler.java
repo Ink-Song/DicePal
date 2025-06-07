@@ -13,6 +13,9 @@ public class InputHandler {
   }
 
   public CommandResult handle(String string) throws InvalidCommandException {
+    if (string.isEmpty()) {
+      return null;
+    }
     if (StringUtil.getFirstCharacter(string) != '/' ){
       throw new InvalidCommandException("No Command character (/) found.");
     }

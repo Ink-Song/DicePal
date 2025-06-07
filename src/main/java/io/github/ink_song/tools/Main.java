@@ -34,6 +34,9 @@ public class Main {
       }
       try {
         CommandResult output = inputHandler.handle(input);
+        if (output == null) {
+          continue;
+        }
         System.out.println(ANSI_BOLD + "Result: " + ANSI_RESET + output.getMessage());
       } catch (InvalidCommandException e) {
         System.out.println("Invalid command: " + e.getMessage());
