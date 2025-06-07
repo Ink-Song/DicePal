@@ -1,4 +1,7 @@
 # Dice Pal
+
+![DicePal](images/dicepal_rmimg.png)
+
 ## Introduction
 Dice Pal is a CLI based Dice Rolling program for rolling RPG dice. It is written in Java.
 The program takes an input string and parses it for dice information, and automatically performs dice rolls and sums the results.
