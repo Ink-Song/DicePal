@@ -1,6 +1,6 @@
 # Dice Pal
 
-![DicePal](images/dicepal_rmimg.png)
+![DicePal](https://raw.githubusercontent.com/Ink-Song/DicePal/refs/heads/main/images/dicepal_rmimg.png?token=GHSAT0AAAAAACXBMCYYC4GANJSBFGGA5A5S2CEMTWQ)
 
 ## Introduction
 Dice Pal is a CLI based Dice Rolling program for rolling RPG dice. It is written in Java.
