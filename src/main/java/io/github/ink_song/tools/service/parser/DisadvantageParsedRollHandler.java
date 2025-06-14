@@ -8,15 +8,29 @@ import java.util.List;
 public class DisadvantageParsedRollHandler implements ParsedRollHandler {
   @Override
   public String handle(ParsedRoll parsedRoll) {
-    DiceRoller diceRoller = new DiceRoller();
     List<ParsedItem> parsedItems = parsedRoll.getTokens();
+    int[] results = new int[2];
+
+    for (int i = 0; i < 2; i++) {
+      results[i] = performRolls(parsedItems);
+    }
+
+    String highest = "" + Math.max(results[0], results[1]);
+    String lowest = "" + Math.min(results[0], results[1]);
+
+
+    return lowest + ", " + highest;
+  }
+
+  private int performRolls(List<ParsedItem> parsedItems) {
     Operator operator = Operator.ADD;
     int currentResult = 0;
+
     for (ParsedItem parsedItem : parsedItems) {
       ItemType type = parsedItem.type();
       switch (type) {
         case DICE -> {
-          int a = diceRoller.rollWithDisadvantage(parsedItem.asDice());
+          int a = parsedItem.asDice().roll();
           currentResult = evaluate(currentResult, a, operator);
         }
         case INTEGER -> {
@@ -33,15 +47,9 @@ public class DisadvantageParsedRollHandler implements ParsedRollHandler {
         }
       }
     }
-
-    return "" + currentResult;
+    return currentResult;
   }
 
-  private int rollWithDisadvantage(Dice dice){
-    int roll1 = dice.roll();
-    int roll2 = dice.roll();
-    return Math.min(roll1, roll2);
-  }
   private int evaluate(int a, int b, Operator operator) {
     int result = 0;
     switch (operator) {

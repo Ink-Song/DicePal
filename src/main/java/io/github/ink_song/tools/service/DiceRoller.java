@@ -49,5 +49,4 @@ public class DiceRoller {
     int second = dice.roll();
     return Math.min(first, second);
   }
-
 }
