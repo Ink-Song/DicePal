@@ -15,6 +15,7 @@ public class Main {
   private static final String ANSI_RESET = "\u001B[0m";
   private static final String ANSI_YELLOW = "\u001B[33m";
   private static final String ANSI_BOLD = "\u001B[1m";
+  private static final String WELCOME = "";
 
 
   public static void main(String[] args) {
@@ -25,6 +26,8 @@ public class Main {
     InputHandler inputHandler = new InputHandler(commandRegistry);
     initializeCommands(commandRegistry, commandFactory);
     String input;
+
+    displayWelcome();
 
     while(true) {
       System.out.print("> ");
@@ -49,5 +52,20 @@ public class Main {
     commandRegistry.register("/npc", commandFactory::rollStatsCommand);
     commandRegistry.register("/adv", commandFactory::rollAdvantageCommand);
     commandRegistry.register("/dis", commandFactory::rollDisadvantageCommand);
+  }
+
+  private static void displayWelcome(){
+    String[] welcome = new String[]{
+        "______ _____ _____  ___________  ___   _",
+        "|  _  \\_   _/  __ \\|  ___| ___ \\/ _ \\ | |    ",
+        "| | | | | | | /  \\/| |__ | |_/ / /_\\ \\| |    ",
+        "| | | | | | | |    |  __||  __/|  _  || |    ",
+        "| |/ / _| |_| \\__/\\| |___| |   | | | || |____",
+        "|___/  \\___/ \\____/\\____/\\_|   \\_| |_/\\_____/"
+    };
+    for (int i = 0; i < welcome.length; i++) {
+      System.out.println(welcome[i]);
+    }
+    System.out.println("Welcome and Happy Rolling!");
   }
 }
