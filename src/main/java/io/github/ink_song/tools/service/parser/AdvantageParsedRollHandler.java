@@ -1,5 +1,8 @@
 package io.github.ink_song.tools.service.parser;
 
+import io.github.ink_song.tools.service.color.AnsiColor;
+import io.github.ink_song.tools.util.StringUtil;
+
 import java.util.List;
 
 public class AdvantageParsedRollHandler implements ParsedRollHandler {
@@ -16,7 +19,7 @@ public class AdvantageParsedRollHandler implements ParsedRollHandler {
     String lowest = "" + Math.min(results[0], results[1]);
 
 
-    return highest + ", " + lowest;
+    return StringUtil.color(highest, AnsiColor.GREEN) + ", " + lowest;
   }
 
   private int performRolls(List<ParsedItem> parsedItems) {

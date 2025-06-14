@@ -2,6 +2,8 @@ package io.github.ink_song.tools.service.parser;
 
 import io.github.ink_song.tools.model.Dice;
 import io.github.ink_song.tools.service.DiceRoller;
+import io.github.ink_song.tools.service.color.AnsiColor;
+import io.github.ink_song.tools.util.StringUtil;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class DisadvantageParsedRollHandler implements ParsedRollHandler {
     String lowest = "" + Math.min(results[0], results[1]);
 
 
-    return lowest + ", " + highest;
+    return StringUtil.color(lowest, AnsiColor.RED) + ", " + highest;
   }
 
   private int performRolls(List<ParsedItem> parsedItems) {
