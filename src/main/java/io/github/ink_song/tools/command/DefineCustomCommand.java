@@ -19,13 +19,15 @@ public class DefineCustomCommand implements Command {
    */
   @Override
   public CommandResult execute(String[] args) {
-    String commandName = args[1].toLowerCase();
-    StringBuilder customCommandArgs = new StringBuilder();
-    for (int i = 2; i < args.length; i++) {
-      customCommandArgs.append(args[i]).append(" ");
+    String[] customCommand = args[1].split(" ", 2);
+    if (customCommand.length != 2) {
+      throw new InvalidParameterException("Custom command syntax is incorrect");
     }
+
+    String commandName = customCommand[0].toLowerCase();
+    String commandPair = customCommand[1];
     try {
-      customCommandRegistry.register(commandName, customCommandArgs.toString());
+      customCommandRegistry.register(commandName, commandPair);
     } catch (IOException e) {
       throw new InvalidParameterException(e.getMessage());
     }

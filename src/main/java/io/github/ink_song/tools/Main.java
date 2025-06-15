@@ -63,6 +63,7 @@ public class Main {
     commandRegistry.register("/npc", commandFactory::rollStatsCommand);
     commandRegistry.register("/adv", commandFactory::rollAdvantageCommand);
     commandRegistry.register("/dis", commandFactory::rollDisadvantageCommand);
+    commandRegistry.register("/def", commandFactory::defineCustomRollCommand);
   }
 
   private static void displayWelcome(){

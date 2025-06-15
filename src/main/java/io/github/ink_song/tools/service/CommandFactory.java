@@ -24,4 +24,8 @@ public class CommandFactory {
   public Command rollDisadvantageCommand() {
     return new RollDisadvantageCommand(customCommandRegistry);
   }
+
+  public Command defineCustomRollCommand() {
+    return new DefineCustomCommand(customCommandRegistry);
+  }
 }

@@ -11,8 +11,8 @@ class DefineCustomCommandTest {
   private DefineCustomCommand defineCustomCommand;
   private final String[] args = new String[]{
       "/def",
-      "barbarian",
-      "1d20 + 5, 1d10 + 2"
+      "barbarian 1d20 + 5, 1d10 + 2",
+
   };
 
   @BeforeEach
