@@ -43,4 +43,7 @@ public class CustomCommandRegistry {
       properties.store(outputStream, "commands.properties");
     }
   }
+  public boolean exists(String key){
+    return properties.containsKey(key);
+  }
 }

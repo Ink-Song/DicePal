@@ -31,7 +31,7 @@ public class Main {
       System.out.println(errormessage);
       logger.error(e);
     }
-    CommandFactory commandFactory = new CommandFactory();
+    CommandFactory commandFactory = new CommandFactory(customCommandRegistry);
     CommandRegistry commandRegistry = new CommandRegistry();
 
     InputHandler inputHandler = new InputHandler(commandRegistry);

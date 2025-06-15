@@ -4,8 +4,13 @@ import io.github.ink_song.tools.command.*;
 
 public class CommandFactory {
 
+  private CustomCommandRegistry customCommandRegistry;
+  public CommandFactory(CustomCommandRegistry customCommandRegistry) {
+    this.customCommandRegistry = customCommandRegistry;
+  }
+
   public RollCommand rollCommand(){
-    return new RollCommand();
+    return new RollCommand(customCommandRegistry);
   }
 
   public RollStatsCommand rollStatsCommand(){
@@ -13,10 +18,10 @@ public class CommandFactory {
   }
 
   public RollAdvantageCommand rollAdvantageCommand(){
-    return new RollAdvantageCommand();
+    return new RollAdvantageCommand(customCommandRegistry);
   }
 
   public Command rollDisadvantageCommand() {
-    return new RollDisadvantageCommand();
+    return new RollDisadvantageCommand(customCommandRegistry);
   }
 }
