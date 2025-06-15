@@ -4,7 +4,10 @@ import io.github.ink_song.tools.exception.InvalidCommandException;
 import io.github.ink_song.tools.model.CommandResult;
 import io.github.ink_song.tools.service.CommandFactory;
 import io.github.ink_song.tools.service.CommandRegistry;
+import io.github.ink_song.tools.service.CustomCommandRegistry;
 import io.github.ink_song.tools.service.InputHandler;
+import io.github.ink_song.tools.service.color.AnsiColor;
+import io.github.ink_song.tools.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +23,14 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    CustomCommandRegistry customCommandRegistry = new CustomCommandRegistry("config","shortcuts.properties");
+    try {
+      customCommandRegistry.initialize();
+    } catch (Exception e) {
+      String errormessage = StringUtil.color("Failed to Initialize Custom Command Registry", AnsiColor.RED);
+      System.out.println(errormessage);
+      logger.error(e);
+    }
     CommandFactory commandFactory = new CommandFactory();
     CommandRegistry commandRegistry = new CommandRegistry();
 
@@ -63,8 +74,8 @@ public class Main {
         "| |/ / _| |_| \\__/\\| |___| |   | | | || |____",
         "|___/  \\___/ \\____/\\____/\\_|   \\_| |_/\\_____/"
     };
-    for (int i = 0; i < welcome.length; i++) {
-      System.out.println(welcome[i]);
+    for (String string : welcome) {
+      System.out.println(string);
     }
     System.out.println("Welcome and Happy Rolling!");
   }
