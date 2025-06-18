@@ -31,7 +31,7 @@ public class Main {
       System.out.println(errormessage);
       logger.error(e);
     }
-    CommandFactory commandFactory = new CommandFactory(customCommandRegistry);
+    CommandFactory commandFactory = new CommandFactory(customCommandRegistry, scanner);
     CommandRegistry commandRegistry = new CommandRegistry();
 
     InputHandler inputHandler = new InputHandler(commandRegistry);
@@ -64,6 +64,7 @@ public class Main {
     commandRegistry.register("/adv", commandFactory::rollAdvantageCommand);
     commandRegistry.register("/dis", commandFactory::rollDisadvantageCommand);
     commandRegistry.register("/def", commandFactory::defineCustomRollCommand);
+    commandRegistry.register("/clear", commandFactory::clearCustomRegistryCommand);
   }
 
   private static void displayWelcome(){

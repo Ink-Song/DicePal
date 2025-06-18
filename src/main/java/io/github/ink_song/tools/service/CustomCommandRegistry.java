@@ -46,4 +46,11 @@ public class CustomCommandRegistry {
   public boolean exists(String key){
     return properties.containsKey(key);
   }
+
+  public void clear() throws IOException {
+    properties.clear();
+    try (OutputStream outputStream = Files.newOutputStream(propertiesFile)) {
+      properties.store(outputStream, "commands.properties");
+    }
+  }
 }

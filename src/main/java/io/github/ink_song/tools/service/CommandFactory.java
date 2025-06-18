@@ -2,11 +2,15 @@ package io.github.ink_song.tools.service;
 
 import io.github.ink_song.tools.command.*;
 
+import java.util.Scanner;
+
 public class CommandFactory {
 
-  private CustomCommandRegistry customCommandRegistry;
-  public CommandFactory(CustomCommandRegistry customCommandRegistry) {
+  private final CustomCommandRegistry customCommandRegistry;
+  private final Scanner scanner;
+  public CommandFactory(CustomCommandRegistry customCommandRegistry, Scanner scanner) {
     this.customCommandRegistry = customCommandRegistry;
+    this.scanner = scanner;
   }
 
   public RollCommand rollCommand(){
@@ -27,5 +31,9 @@ public class CommandFactory {
 
   public Command defineCustomRollCommand() {
     return new DefineCustomCommand(customCommandRegistry);
+  }
+
+  public Command clearCustomRegistryCommand() {
+    return new ClearCustomCommand(customCommandRegistry, scanner);
   }
 }
