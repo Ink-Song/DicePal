@@ -4,12 +4,12 @@ import io.github.ink_song.tools.command.Command;
 import io.github.ink_song.tools.command.CommandEntry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CommandRegistry {
-  private final Map<String, CommandEntry> commands = new HashMap<>();
+  private final Map<String, CommandEntry> commands = new LinkedHashMap<>();
 
   public void register(CommandEntry entry) {
     commands.put(entry.getName(), entry);
