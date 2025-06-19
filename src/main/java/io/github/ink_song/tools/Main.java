@@ -73,7 +73,7 @@ public class Main {
         "Rolls twice. Prints both, highlights lowest. Use like /roll.",
         commandFactory::rollDisadvantageCommand));
     commandRegistry.register(new CommandEntry("/def",
-        "Define custom rolls. Use <Name> <Roll(s)> format. Can be used in /roll, /adv, /dis",
+        "Define custom rolls. Use <Name> <Roll(s)> format. Can be used in /roll, /adv, /dis. EG: /roll dragon",
         commandFactory::defineCustomRollCommand));
     commandRegistry.register(new CommandEntry("/clear",
         "Clears all custom commands. Cannot be undone.",
