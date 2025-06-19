@@ -45,6 +45,7 @@ DicePal comes complete with a handful of commands, and there are plans to add mo
 | `/clear` | Clears all registered custom rolls. Cannot be undone.                                                                                                                   |
 | `/help`  | Prints a list of all commands and what they do.                                                                                                                         |
 | /`exit`  | Closes the program.                                                                                                                                                     |
+
 For rolling multiple sets of dice but separating the results, (such as for different damage types) you can separate the rolls with a comma. EG:
 
 ```
