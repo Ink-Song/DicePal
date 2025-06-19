@@ -72,7 +72,7 @@ Note that all names are formatted to lowercase automatically. So if you put `Dra
 Currently, the program is only tested on Windows.
 This program requires an installation of the Java Runtime Environment.
 
-To install the program, download the Jar file from the releases page. Pick a folder to store the file. In order to run the program from the command line you'll need to add the projects folder to the path, and create a batch file that executes the jar. I'm not really qualified to explain this, but there shoul dbe useful resources on google that can help.
+To install the program, download the Jar file from the releases page. Pick a folder to store the file. In order to run the program from the command line you'll need to add the projects folder to the path, and create a batch file that executes the jar. I'm not really qualified to explain this, but there should be useful resources on google that can help.
 
 ## Roadmap
 
