@@ -39,3 +39,4 @@ build/
 
 ### Log Files ###
 /logs/app.log
+/config/test.properties

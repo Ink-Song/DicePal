@@ -18,7 +18,6 @@ public class RollParser {
     String[] diceGroups = input.split("\\s*,\\s");
     List<String> parsedInputs = new ArrayList<>();
     for(String diceGroup : diceGroups){
-      System.out.println(diceGroup);
       if(validator.isValid(diceGroup)){
         parsedInputs.add(diceGroup);
       } else {
