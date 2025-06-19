@@ -16,9 +16,7 @@ public class CommandRegistry {
   }
 
   public List<CommandEntry> getAllCommands() {
-    List<CommandEntry> commandList = new ArrayList<>(commands.values());
-    commandList.addAll(commands.values());
-    return commandList;
+    return new ArrayList<>(commands.values());
   }
 
   public Command getCommand(String commandName) {
