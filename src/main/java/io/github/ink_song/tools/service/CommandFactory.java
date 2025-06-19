@@ -47,4 +47,8 @@ public class CommandFactory {
   public Command helpCommand() {
     return new HelpCommand(output, commandRegistry);
   }
+
+  public Command exitCommand() {
+    return new ExitCommand();
+  }
 }

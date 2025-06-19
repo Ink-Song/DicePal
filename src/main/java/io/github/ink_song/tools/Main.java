@@ -44,7 +44,7 @@ public class Main {
     while(true) {
       output.print("> ");
       input = scanner.nextLine();
-      if (input.equals("/quit")) {
+      if(input.equals("/shutdown")) {
         System.exit(0);
       }
       try {
@@ -82,6 +82,7 @@ public class Main {
         "Lists all commands and their descriptions.",
         commandFactory::helpCommand
         ));
+    commandRegistry.register(new CommandEntry("/exit", "Exit the program.", commandFactory::exitCommand));
   }
 
   private static void displayWelcome(){
