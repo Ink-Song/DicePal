@@ -40,6 +40,7 @@ public class Main {
     String input;
 
     displayWelcome();
+    output.println("Type /help for command list.");
 
     while(true) {
       output.print("> ");
