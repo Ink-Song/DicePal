@@ -74,6 +74,9 @@ This program requires an installation of the Java Runtime Environment.
 
 To install the program, download the Jar file from the releases page. Pick a folder to store the file. In order to run the program from the command line you'll need to add the projects folder to the path, and create a batch file that executes the jar. I'm not really qualified to explain this, but there should be useful resources on google that can help.
 
+> [!IMPORTANT]
+> The project is built on OpenJDK 2022. I haven't tested it on earlier or later versions of the JDK, but due to some external dependencies, using OpenJDK 2022 may be required. 
+
 ## Roadmap
 
 I don't have a set roadmap for this. Mostly just working on it in my spare time. That said, I do have some planned features for future releases.
